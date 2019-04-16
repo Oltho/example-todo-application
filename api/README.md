@@ -21,6 +21,7 @@ Please refer to the `config/conf.py` file. And set environment variable to match
 Note that **production** configuration file will be used by default.
 
 Depending on the environnment variable `TODO_APP_API_ENV`, the following file will be used
+
 | TODO_APP_API_ENV  | config file |
 | ---------- | ---------- |
 | DEV | conf_local.py |
