@@ -16,7 +16,7 @@ paths:
       tags:
       - greeting
       summary: Generate Hello World
-      operationId: api.controllers.greeting.hello
+      operationId: todo_api.controllers.greeting.hello
       responses:
         200:
           description: Greeting from the API
