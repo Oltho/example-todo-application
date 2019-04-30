@@ -8,4 +8,5 @@ venv/
 .tox/
 
 .coverage
-cov_todo_api.xml
+coverage.xml
+htmlcov/
