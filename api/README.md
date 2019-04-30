@@ -28,3 +28,7 @@ Depending on the environnment variable `TODO_APP_API_ENV`, the following file wi
 | TESTING | conf_testing.py |
 | other | conf_prod.py |
 
+## Running Test
+```bash
+pytest
+```

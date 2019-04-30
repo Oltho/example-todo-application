@@ -5,7 +5,8 @@ info:
   description: This API allow you to manage the TODO application
   contact:
     email: contact@localhost.com
-
+servers:
+  - url: /v0
 tags:
 - name: greeting
   description: Operation about greeting
