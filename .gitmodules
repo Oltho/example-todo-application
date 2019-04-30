@@ -1,0 +1,3 @@
+[submodule "example-todo-application-api"]
+	path = example-todo-application-api
+	url = git@github.com:Oltho/example-todo-application-api.git
