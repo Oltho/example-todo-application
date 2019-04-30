@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  toxify_api:
+    working_directory: ~/example-todo-application
+    docker:
+      - image: circleci/python:3.7
+    
+    steps:
+      - checkout
+      - run: cd api
+      - run: pip install tox && tox
+
+workflows:
+  version: 2
+  api:
+    jobs:
+      - toxify_api
