@@ -8,5 +8,4 @@ venv/
 .tox/
 
 .coverage
-coverage.xml
-htmlcov/
+test_results/
