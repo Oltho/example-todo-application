@@ -14,6 +14,11 @@ jobs:
       - run:
           name: Running test defined in tox.ini file
           command: tox
+      - store_test_results:
+          path: test_results
+      - store_artifacts:
+          path: test_results
+          destination: api_test_results
 
 workflows:
   version: 2
