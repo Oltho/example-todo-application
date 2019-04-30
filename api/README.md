@@ -29,6 +29,9 @@ Depending on the environnment variable `TODO_APP_API_ENV`, the following file wi
 | other | conf_prod.py |
 
 ## Running Test
+We will run unit testing and code quality with the following command
+
 ```bash
 pytest
+flake8
 ```

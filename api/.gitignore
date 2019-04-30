@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+
+.history
+.vscode
+
+venv/
+
+.coverage
+cov_todo_api.xml
