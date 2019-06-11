@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:11-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/todo_app_db_username
+      POSTGRES_PASSWORD_FILE: /run/secrets/todo_app_db_password
+      POSTGRES_DB: todo_app_db
+    secrets:
+      - todo_app_db_username
+      - todo_app_db_password
+    networks:
+      - app-back
+
+secrets:
+  todo_app_db_username:
+    file: todo_app_db_username.txt
+  todo_app_db_password:
+    file: todo_app_db_password.txt
+
+volumes:
+  db_data:
+
+networks: 
+  app-front:
+  app-back:
+    
