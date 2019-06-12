@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: todo-api.minikube
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: todo-application-api
+              servicePort: 80

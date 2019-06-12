@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-application-api
+  labels:
+    app: todo-application
+    type: api
+spec:
+  selector:
+    matchLabels:
+      app: todo-application
+      type: api
+  template:
+    metadata:
+      labels:
+        app: todo-application
+        type: api
+    spec:
+      containers:
+      - name: todo-application-api
+        image: oltho/example-todo-application-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        env:
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: db_username
+                name: todo-application-secret
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: db_password
+                name: todo-application-secret
+          - name: DB_IP
+            value: todo-application-postgresql
+          - name: DB_NAME
+            value: todo-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-application-api
+  labels:
+    app: todo-application
+    type: api
+spec:
+  selector:
+    app: todo-application
+    type: api
+  ports:
+  - port: 80
+    targetPort: 8000
+    

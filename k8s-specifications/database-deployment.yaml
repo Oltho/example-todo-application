@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-application-postgresql
+  labels:
+    app: todo-application
+    type: database
+spec:
+  selector:
+    matchLabels:
+      app: todo-application
+      type: database
+  template:
+    metadata:
+      labels:
+        app: todo-application
+        type: database
+    spec:
+      containers:
+      - name: todo-application-postgresql
+        image: postgres:11-alpine
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "256m"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: data
+        env:
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                key: db_username
+                name: todo-application-secret
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: db_password
+                name: todo-application-secret
+          - name: POSTGRES_DB
+            value: todo-db
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: todo-application-postgresql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-application-postgresql
+  labels:
+    app: todo-application
+    type: database
+spec:
+  selector:
+    app: todo-application
+    type: database
+  ports:
+  - port: 5432
+    targetPort: 5432
